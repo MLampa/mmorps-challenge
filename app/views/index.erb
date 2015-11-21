@@ -1,0 +1,29 @@
+<h1>Rock, Paper, Scissors</h1>
+
+<ul>
+  <h3>Player</h3>
+  <p> Score: <%= session[:player].player_score %></p>
+
+  <h3>CPU</h3>
+  <p> Score: <%= session[:player].cpu_score %></p>
+</ul>
+<% if (session[:player].player_score < 2) && (session[:player].cpu_score < 2) %>
+<form action="/rps_game" method="post">
+   <b><label for="weapon">Weapon of Choice:</label></b>
+   <br>
+   <input type="radio" name="weapon" value="rock" checked>Rock
+   <br>
+   <input type="radio" name="weapon" value="paper">Paper
+   <br>
+   <input type="radio" name="weapon" value="scissor">Scissor
+   <br>
+   <input type="submit" value="Submit">
+ </form>
+<% else %>
+  <% if (session[:player].player_score >= 2) %>
+  "You win!"
+  <% else %>
+  "The computer won this round."
+  <% end %>
+  <a href='/reset'>Reset user info</a>
+<% end %>
